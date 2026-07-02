@@ -160,11 +160,14 @@
 <body>
     <div>
         <nav class="navbar navbar-expand-lg navbar-light bg-white">
-            <div class="container"> <a class="navbar-brand" href="#"> <img src="https://assets.ccbp.in/frontend/responsive-website/food-munch-img.png" class="food-munch-logo" /> </a>
-                <div class="d-flex flex-row">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-cart3 pt-2 mb-2 pl-1 pr-1 cart" viewBox="0 0 16 16">
+            <div class="container"> <a class="navbar-brand" href="mainpage.html"> <img src="https://assets.ccbp.in/frontend/responsive-website/food-munch-img.png" class="food-munch-logo" /> </a>
+                <div class="d-flex flex-row align-items-center" style="gap:8px;">
+                    <a href="cart.html" style="position:relative;text-decoration:none;color:inherit;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-cart3 pt-2 mb-2 pl-1 pr-1 cart" viewBox="0 0 16 16">
                         <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l.84 4.479 9.144-.459L13.89 4zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
                     </svg>
+                        <span class="cart-badge" style="position:absolute;top:-4px;right:0;background:#d0b200;color:#fff;font-size:11px;font-weight:700;width:18px;height:18px;border-radius:50%;display:none;align-items:center;justify-content:center;">0</span>
+                    </a>
                 </div>
             </div>
         </nav>
@@ -193,7 +196,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12 col-md-6 col-lg-4">
-                        <div class="card2 p-3 shadow mb-3 m-3"> <img src="https://as1.ftcdn.net/jpg/08/88/59/62/1000_F_888596228_FKsyM4Xc2raXs5lCR3SHhW6Xs6AT1DgE.jpg" class="imgn w-100" />
+                        <div class="card2 p-3 shadow food-card mb-3 m-3"> <img src="https://as1.ftcdn.net/jpg/08/88/59/62/1000_F_888596228_FKsyM4Xc2raXs5lCR3SHhW6Xs6AT1DgE.jpg" class="imgn w-100" />
                             <div class="d-flex flex-row justify-content-between mt-2">
                                 <h1 class="headi">Mutton Biryani</h1>
                                 <p class="star pl-1 pr-1">4.9<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
@@ -203,11 +206,11 @@
                             <p class="nsp "><svg xmlns="http://www.w3.org/2000/svg" width="15px" height="15px" fill="currentColor" class="bi bi-currency-rupee mb-1" viewBox="0 0 16 16">
                                     <path d="M4 3.06h2.726c1.22 0 2.12.575 2.325 1.724H4v1.051h5.051C8.855 7.001 8 7.558 6.788 7.558H4v1.317L8.437 14h2.11L6.095 8.884h.855c2.316-.018 3.465-1.476 3.688-3.049H12V4.784h-1.345c-.08-.778-.357-1.335-.793-1.732H12V2H4z" />
                                 </svg>300 for each</p>
-                            <button class="nb pl-3 pr-3 p-1">Order</button>
+                            <button class="nb pl-3 pr-3 p-1">Add to Cart</button>
                         </div>
                     </div>
                     <div class="col-12 col-md-6 col-lg-4">
-                        <div class="card2 p-3 shadow mb-3 m-3"> <img src="https://as2.ftcdn.net/jpg/13/14/47/45/1000_F_1314474517_L75hPsnffsOEHhvkV19nQM5Xwfl9OKrj.jpg" class="imgn w-100" />
+                        <div class="card2 p-3 shadow food-card mb-3 m-3"> <img src="https://as2.ftcdn.net/jpg/13/14/47/45/1000_F_1314474517_L75hPsnffsOEHhvkV19nQM5Xwfl9OKrj.jpg" class="imgn w-100" />
                             <div class="d-flex flex-row justify-content-between mt-2">
                                 <h1 class="headi">Chicken Biryani</h1>
                                 <p class="star pl-1 pr-1">4.8<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
@@ -217,11 +220,11 @@
                             <p class="nsp "><svg xmlns="http://www.w3.org/2000/svg" width="15px" height="15px" fill="currentColor" class="bi bi-currency-rupee mb-1" viewBox="0 0 16 16">
                                     <path d="M4 3.06h2.726c1.22 0 2.12.575 2.325 1.724H4v1.051h5.051C8.855 7.001 8 7.558 6.788 7.558H4v1.317L8.437 14h2.11L6.095 8.884h.855c2.316-.018 3.465-1.476 3.688-3.049H12V4.784h-1.345c-.08-.778-.357-1.335-.793-1.732H12V2H4z" />
                                 </svg>150 for each</p>
-                            <button class="nb pl-3 pr-3 p-1">Order</button>
+                            <button class="nb pl-3 pr-3 p-1">Add to Cart</button>
                         </div>
                     </div>
                     <div class="col-12 col-md-6 col-lg-4">
-                        <div class="card2 p-3 shadow mb-3 m-3"> <img src="https://as2.ftcdn.net/jpg/13/50/10/19/1000_F_1350101985_dfwKTcS11SOBp7iBpYrtrVupHqSnpAzf.jpg" class="imgn w-100" />
+                        <div class="card2 p-3 shadow food-card mb-3 m-3"> <img src="https://as2.ftcdn.net/jpg/13/50/10/19/1000_F_1350101985_dfwKTcS11SOBp7iBpYrtrVupHqSnpAzf.jpg" class="imgn w-100" />
                             <div class="d-flex flex-row justify-content-between mt-2">
                                 <h1 class="headi">Fry Biryani</h1>
                                 <p class="star pl-1 pr-1">4.3<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
@@ -231,11 +234,11 @@
                             <p class="nsp "><svg xmlns="http://www.w3.org/2000/svg" width="15px" height="15px" fill="currentColor" class="bi bi-currency-rupee mb-1" viewBox="0 0 16 16">
                                     <path d="M4 3.06h2.726c1.22 0 2.12.575 2.325 1.724H4v1.051h5.051C8.855 7.001 8 7.558 6.788 7.558H4v1.317L8.437 14h2.11L6.095 8.884h.855c2.316-.018 3.465-1.476 3.688-3.049H12V4.784h-1.345c-.08-.778-.357-1.335-.793-1.732H12V2H4z" />
                                 </svg>200 for each</p>
-                            <button class="nb pl-3 pr-3 p-1">Order</button>
+                            <button class="nb pl-3 pr-3 p-1">Add to Cart</button>
                         </div>
                     </div>
                     <div class="col-12 col-md-6 col-lg-4">
-                        <div class="card2 p-3 shadow mb-3 m-3"> <img src="https://as2.ftcdn.net/jpg/07/17/85/21/1000_F_717852126_3SR8z9AbelCo2qPv8eAzh7iYQGSpd2r4.jpg" class="imgn w-100" />
+                        <div class="card2 p-3 shadow food-card mb-3 m-3"> <img src="https://as2.ftcdn.net/jpg/07/17/85/21/1000_F_717852126_3SR8z9AbelCo2qPv8eAzh7iYQGSpd2r4.jpg" class="imgn w-100" />
                             <div class="d-flex flex-row justify-content-between mt-2">
                                 <h1 class="headi">Veg Biryani</h1>
                                 <p class="star pl-1 pr-1">4.5<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
@@ -245,11 +248,11 @@
                             <p class="nsp "><svg xmlns="http://www.w3.org/2000/svg" width="15px" height="15px" fill="currentColor" class="bi bi-currency-rupee mb-1" viewBox="0 0 16 16">
                                     <path d="M4 3.06h2.726c1.22 0 2.12.575 2.325 1.724H4v1.051h5.051C8.855 7.001 8 7.558 6.788 7.558H4v1.317L8.437 14h2.11L6.095 8.884h.855c2.316-.018 3.465-1.476 3.688-3.049H12V4.784h-1.345c-.08-.778-.357-1.335-.793-1.732H12V2H4z" />
                                 </svg>180 for each</p>
-                            <button class="nb pl-3 pr-3 p-1">Order</button>
+                            <button class="nb pl-3 pr-3 p-1">Add to Cart</button>
                         </div>
                     </div>
                     <div class="col-12 col-md-6 col-lg-4">
-                        <div class="card2 p-3 shadow mb-3 m-3"> <img src="https://as1.ftcdn.net/jpg/04/18/22/50/1000_F_418225097_7iVmIAdPvgrywca5C1f9Ye26S2uNyO9w.jpg" class="imgn w-100" />
+                        <div class="card2 p-3 shadow food-card mb-3 m-3"> <img src="https://as1.ftcdn.net/jpg/04/18/22/50/1000_F_418225097_7iVmIAdPvgrywca5C1f9Ye26S2uNyO9w.jpg" class="imgn w-100" />
                             <div class="d-flex flex-row justify-content-between mt-2">
                                 <h1 class="headi">Fish Biryani</h1>
                                 <p class="star pl-1 pr-1">4.9<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
@@ -259,11 +262,11 @@
                             <p class="nsp "><svg xmlns="http://www.w3.org/2000/svg" width="15px" height="15px" fill="currentColor" class="bi bi-currency-rupee mb-1" viewBox="0 0 16 16">
                                     <path d="M4 3.06h2.726c1.22 0 2.12.575 2.325 1.724H4v1.051h5.051C8.855 7.001 8 7.558 6.788 7.558H4v1.317L8.437 14h2.11L6.095 8.884h.855c2.316-.018 3.465-1.476 3.688-3.049H12V4.784h-1.345c-.08-.778-.357-1.335-.793-1.732H12V2H4z" />
                                 </svg>280 for each</p>
-                            <button class="nb pl-3 pr-3 p-1">Order</button>
+                            <button class="nb pl-3 pr-3 p-1">Add to Cart</button>
                         </div>
                     </div>
                     <div class="col-12 col-md-6 col-lg-4">
-                        <div class="card2 p-3 shadow mb-3 m-3"> <img src="https://as1.ftcdn.net/jpg/10/51/73/72/1000_F_1051737210_Xr4E3MConitc3Rn8CSXkrGGCDlsPGra0.jpg" class="imgn w-100" />
+                        <div class="card2 p-3 shadow food-card mb-3 m-3"> <img src="https://as1.ftcdn.net/jpg/10/51/73/72/1000_F_1051737210_Xr4E3MConitc3Rn8CSXkrGGCDlsPGra0.jpg" class="imgn w-100" />
                             <div class="d-flex flex-row justify-content-between mt-2">
                                 <h1 class="headi">Prawns Biryani</h1>
                                 <p class="star pl-1 pr-1">4.8<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
@@ -273,11 +276,11 @@
                             <p class="nsp "><svg xmlns="http://www.w3.org/2000/svg" width="15px" height="15px" fill="currentColor" class="bi bi-currency-rupee mb-1" viewBox="0 0 16 16">
                                     <path d="M4 3.06h2.726c1.22 0 2.12.575 2.325 1.724H4v1.051h5.051C8.855 7.001 8 7.558 6.788 7.558H4v1.317L8.437 14h2.11L6.095 8.884h.855c2.316-.018 3.465-1.476 3.688-3.049H12V4.784h-1.345c-.08-.778-.357-1.335-.793-1.732H12V2H4z" />
                                 </svg>280 for each</p>
-                            <button class="nb pl-3 pr-3 p-1">Order</button>
+                            <button class="nb pl-3 pr-3 p-1">Add to Cart</button>
                         </div>
                     </div>
                     <div class="col-12 col-md-6 col-lg-4">
-                        <div class="card2 p-3 shadow mb-3 m-3"> <img src="https://as1.ftcdn.net/jpg/13/91/53/90/1000_F_1391539014_jWqNZxmh5rjRZPnHUIVZ9oioU8yLNXiR.jpg" class="imgn w-100" />
+                        <div class="card2 p-3 shadow food-card mb-3 m-3"> <img src="https://as1.ftcdn.net/jpg/13/91/53/90/1000_F_1391539014_jWqNZxmh5rjRZPnHUIVZ9oioU8yLNXiR.jpg" class="imgn w-100" />
                             <div class="d-flex flex-row justify-content-between mt-2">
                                 <h1 class="headi">Egg Biryani</h1>
                                 <p class="star pl-1 pr-1">4.4<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
@@ -287,11 +290,11 @@
                             <p class="nsp "><svg xmlns="http://www.w3.org/2000/svg" width="15px" height="15px" fill="currentColor" class="bi bi-currency-rupee mb-1" viewBox="0 0 16 16">
                                     <path d="M4 3.06h2.726c1.22 0 2.12.575 2.325 1.724H4v1.051h5.051C8.855 7.001 8 7.558 6.788 7.558H4v1.317L8.437 14h2.11L6.095 8.884h.855c2.316-.018 3.465-1.476 3.688-3.049H12V4.784h-1.345c-.08-.778-.357-1.335-.793-1.732H12V2H4z" />
                                 </svg>120 for each</p>
-                            <button class="nb pl-3 pr-3 p-1">Order</button>
+                            <button class="nb pl-3 pr-3 p-1">Add to Cart</button>
                         </div>
                     </div>
                     <div class="col-12 col-md-6 col-lg-4">
-                        <div class="card2 p-3 shadow mb-3 m-3">
+                        <div class="card2 p-3 shadow food-card mb-3 m-3">
                             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpIhb5-HTS9i_7GB-KB10aVruRETCuXdpPHw&s" class="imgn w-100" />
                             <div class="d-flex flex-row justify-content-between mt-2">
                                 <h1 class="headi">Gobi Biryani</h1>
@@ -302,7 +305,7 @@
                             <p class="nsp "><svg xmlns="http://www.w3.org/2000/svg" width="15px" height="15px" fill="currentColor" class="bi bi-currency-rupee mb-1" viewBox="0 0 16 16">
                                     <path d="M4 3.06h2.726c1.22 0 2.12.575 2.325 1.724H4v1.051h5.051C8.855 7.001 8 7.558 6.788 7.558H4v1.317L8.437 14h2.11L6.095 8.884h.855c2.316-.018 3.465-1.476 3.688-3.049H12V4.784h-1.345c-.08-.778-.357-1.335-.793-1.732H12V2H4z" />
                                 </svg>100 for each</p>
-                            <button class="nb pl-3 pr-3 p-1">Order</button>
+                            <button class="nb pl-3 pr-3 p-1">Add to Cart</button>
                         </div>
                     </div>
                 </div>
@@ -313,6 +316,7 @@
         </div>
     </div>
     <script type="text/javascript" src="https://d1tgh8fmlzexmh.cloudfront.net/ccbp-static-website/js/ccbp-ui-kit.js"></script>
+    <script src="cart.js"></script>
 </body>
 
 </html>

@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Place Order – Food Munch</title>
+  <meta name="description" content="Complete your Food Munch order – enter delivery details and payment method." />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Roboto', sans-serif; background: #f9fbfe; min-height: 100vh; }
+
+    /* NAV */
+    .navbar { background: #fff; box-shadow: 0 2px 12px rgba(0,0,0,.08); padding: 12px 24px; }
+    .food-munch-logo { width: 70px; height: 61px; }
+    .cart-badge {
+      position: absolute; top: -6px; right: -8px;
+      background: #d0b200; color: #fff;
+      font-size: 11px; font-weight: 700;
+      width: 20px; height: 20px; border-radius: 50%;
+      display: inline-flex; align-items: center; justify-content: center;
+    }
+
+    /* PAGE HEADER */
+    .page-header {
+      background: linear-gradient(135deg, #1a1100 0%, #3a2e00 100%);
+      padding: 60px 0 40px; text-align: center;
+    }
+    .page-header h1 { color: #d0b200; font-size: 36px; font-weight: 700; }
+    .page-header p  { color: rgba(255,255,255,.7); font-size: 15px; margin-top: 6px; }
+
+    /* LAYOUT */
+    .order-wrapper { max-width: 980px; margin: 40px auto; padding: 0 16px 80px; }
+    .order-grid { display: grid; grid-template-columns: 1fr 380px; gap: 28px; }
+    @media (max-width: 768px) { .order-grid { grid-template-columns: 1fr; } }
+
+    /* FORM CARD */
+    .form-card {
+      background: #fff; border-radius: 20px;
+      box-shadow: 0 4px 24px rgba(0,0,0,.08); padding: 32px;
+    }
+    .form-section-title {
+      font-size: 18px; font-weight: 700; color: #1a1100;
+      margin-bottom: 20px; padding-bottom: 12px;
+      border-bottom: 2px solid #f0f0f0;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .form-section-title .icon-circle {
+      width: 32px; height: 32px; border-radius: 50%;
+      background: linear-gradient(135deg,#d0b200,#f5d020);
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 15px; color: #1a1100; font-weight: 700; flex-shrink: 0;
+    }
+
+    .fm-label { font-size: 13px; font-weight: 600; color: #5a7184; margin-bottom: 6px; display: block; }
+    .fm-input {
+      width: 100%; border: 1.5px solid #e5eaf4; border-radius: 12px;
+      padding: 12px 16px; font-size: 14px; outline: none; color: #1a1100;
+      transition: border-color .2s, box-shadow .2s;
+      font-family: 'Roboto', sans-serif;
+    }
+    .fm-input:focus { border-color: #d0b200; box-shadow: 0 0 0 3px rgba(208,178,0,.12); }
+    .fm-input.error { border-color: #e74c3c; }
+    .input-group-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media (max-width: 480px) { .input-group-row { grid-template-columns: 1fr; } }
+    .field-block { margin-bottom: 18px; }
+    .error-msg { color: #e74c3c; font-size: 12px; margin-top: 4px; }
+
+    /* PAYMENT OPTIONS */
+    .payment-options { display: flex; flex-direction: column; gap: 12px; }
+    .payment-option {
+      border: 1.5px solid #e5eaf4; border-radius: 14px; padding: 14px 18px;
+      cursor: pointer; display: flex; align-items: center; gap: 14px;
+      transition: border-color .2s, background .2s;
+    }
+    .payment-option:hover { border-color: #d0b200; background: #fffdf0; }
+    .payment-option.selected { border-color: #d0b200; background: #fffcdb; }
+    .payment-option input[type="radio"] { accent-color: #d0b200; width: 18px; height: 18px; }
+    .payment-option label { cursor: pointer; margin: 0; font-size: 15px; font-weight: 500; color: #323f4b; }
+    .payment-option .pm-sub { font-size: 12px; color: #7b8794; font-weight: 400; }
+
+    /* SUMMARY SIDEBAR */
+    .summary-sidebar { position: sticky; top: 20px; }
+    .summary-card {
+      background: #fff; border-radius: 20px;
+      box-shadow: 0 4px 24px rgba(0,0,0,.08); padding: 28px;
+    }
+    .summary-title { font-size: 18px; font-weight: 700; color: #1a1100; margin-bottom: 20px; }
+    .order-item { display: flex; gap: 12px; margin-bottom: 16px; align-items: center; }
+    .order-item-img { width: 52px; height: 48px; border-radius: 10px; object-fit: cover; flex-shrink: 0; }
+    .order-item-name { font-size: 14px; font-weight: 600; color: #1a1100; }
+    .order-item-meta { font-size: 12px; color: #7b8794; }
+    .order-item-price { font-size: 14px; font-weight: 700; color: #d0b200; margin-left: auto; flex-shrink: 0; }
+    .divider { border: none; border-top: 1px dashed #e5eaf4; margin: 16px 0; }
+    .sum-row { display: flex; justify-content: space-between; font-size: 14px; color: #5a7184; margin-bottom: 10px; }
+    .sum-row.grand { font-size: 17px; font-weight: 700; color: #1a1100; }
+    .sum-row.grand span:last-child { color: #d0b200; }
+
+    .place-order-btn {
+      width: 100%; padding: 16px;
+      background: linear-gradient(135deg, #d0b200, #f5d020);
+      color: #1a1100; font-size: 16px; font-weight: 700;
+      border: none; border-radius: 14px; cursor: pointer;
+      margin-top: 20px; transition: transform .2s, box-shadow .2s;
+      box-shadow: 0 4px 16px rgba(208,178,0,.35);
+    }
+    .place-order-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(208,178,0,.5); }
+    .place-order-btn:disabled { opacity:.6; cursor:not-allowed; transform:none; }
+
+    /* PROGRESS STEPS */
+    .steps { display: flex; align-items: center; justify-content: center; gap: 0; margin-bottom: 40px; }
+    .step { display: flex; flex-direction: column; align-items: center; position: relative; }
+    .step-circle {
+      width: 36px; height: 36px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; font-weight: 700;
+      background: #e5eaf4; color: #7b8794;
+      transition: background .3s, color .3s;
+    }
+    .step.active .step-circle, .step.done .step-circle { background: #d0b200; color: #1a1100; }
+    .step-label { font-size: 11px; color: #7b8794; margin-top: 6px; white-space: nowrap; }
+    .step.active .step-label { color: #d0b200; font-weight: 600; }
+    .step-line { width: 80px; height: 2px; background: #e5eaf4; margin: 0; flex-shrink: 0; }
+    .step-line.done { background: #d0b200; }
+    @media (max-width: 480px) { .step-line { width: 40px; } }
+
+    /* SUCCESS OVERLAY */
+    .success-overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,.7); z-index: 9999;
+      align-items: center; justify-content: center;
+      backdrop-filter: blur(4px);
+    }
+    .success-overlay.show { display: flex; }
+    .success-box {
+      background: #fff; border-radius: 28px; padding: 52px 44px;
+      text-align: center; max-width: 420px; width: 90%;
+      animation: popIn .5s cubic-bezier(.34,1.56,.64,1);
+    }
+    @keyframes popIn { from { transform:scale(.6); opacity:0; } to { transform:scale(1); opacity:1; } }
+    .success-icon {
+      width: 90px; height: 90px; border-radius: 50%;
+      background: linear-gradient(135deg,#d0b200,#f5d020);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 24px; font-size: 40px;
+      box-shadow: 0 8px 32px rgba(208,178,0,.45);
+    }
+    .success-box h2 { font-size: 26px; font-weight: 700; color: #1a1100; margin-bottom: 12px; }
+    .success-box p  { font-size: 15px; color: #5a7184; line-height: 1.6; }
+    .order-id { font-size: 13px; color: #7b8794; margin-top: 12px; }
+    .success-actions { display: flex; flex-direction: column; gap: 12px; margin-top: 28px; }
+    .success-actions button {
+      padding: 14px; font-size: 15px; font-weight: 600; border-radius: 14px; cursor: pointer; border: none;
+    }
+    .btn-track { background: linear-gradient(135deg,#d0b200,#f5d020); color: #1a1100; }
+    .btn-home  { background: transparent; border: 1.5px solid #e5eaf4 !important; color: #5a7184; }
+    .btn-home:hover { border-color: #d0b200 !important; color: #d0b200; }
+
+    /* Empty cart redirect */
+    .empty-redirect { text-align:center; padding: 80px 20px; }
+    .empty-redirect h2 { font-size:22px; color:#323f4b; margin-top:20px; }
+    .empty-redirect a button {
+      margin-top:20px; background:linear-gradient(135deg,#d0b200,#f5d020);
+      color:#1a1100; font-weight:700; border:none; border-radius:12px; padding:14px 32px;
+      cursor:pointer; font-size:15px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav class="navbar d-flex align-items-center justify-content-between">
+    <a href="mainpage.html">
+      <img src="https://assets.ccbp.in/frontend/responsive-website/food-munch-img.png" class="food-munch-logo" alt="Food Munch" />
+    </a>
+    <div class="d-flex align-items-center" style="gap:20px;">
+      <a href="cart.html" style="color:#5a7184;text-decoration:none;font-size:15px;font-weight:500;">← Back to Cart</a>
+      <div style="position:relative;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="#d0b200" viewBox="0 0 16 16">
+          <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l.84 4.479 9.144-.459L13.89 4zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
+        </svg>
+        <span class="cart-badge" id="nav-cart-count" style="display:none;">0</span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <h1>📋 Place Your Order</h1>
+    <p>Just a few details and your food is on the way!</p>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="order-wrapper">
+
+    <!-- PROGRESS STEPS -->
+    <div class="steps">
+      <div class="step done"><div class="step-circle">✓</div><span class="step-label">Browse</span></div>
+      <div class="step-line done"></div>
+      <div class="step done"><div class="step-circle">✓</div><span class="step-label">Cart</span></div>
+      <div class="step-line done"></div>
+      <div class="step active"><div class="step-circle">3</div><span class="step-label">Order</span></div>
+      <div class="step-line"></div>
+      <div class="step"><div class="step-circle">4</div><span class="step-label">Delivered</span></div>
+    </div>
+
+    <div id="order-main-content"></div>
+  </div>
+
+  <!-- SUCCESS OVERLAY -->
+  <div class="success-overlay" id="success-overlay">
+    <div class="success-box">
+      <div class="success-icon">🎉</div>
+      <h2>Order Placed!</h2>
+      <p>Your delicious food is being prepared and will arrive at your doorstep shortly.</p>
+      <p class="order-id" id="order-id-display"></p>
+      <div class="success-actions">
+        <button class="btn-track" onclick="window.location='mainpage.html'">Back to Home</button>
+        <button class="btn-home" onclick="window.location='mainpage.html'">Continue Shopping</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const CART_KEY = 'food_munch_cart';
+    function getCart() { try { return JSON.parse(localStorage.getItem(CART_KEY)) || []; } catch(e) { return []; } }
+    function escHtml(str) {
+      return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+    }
+
+    function init() {
+      const cart = getCart();
+
+      // update nav badge
+      const count = cart.reduce((s,i)=>s+i.qty,0);
+      const badge = document.getElementById('nav-cart-count');
+      badge.textContent = count;
+      badge.style.display = count > 0 ? 'inline-flex' : 'none';
+
+      const container = document.getElementById('order-main-content');
+
+      if (cart.length === 0) {
+        container.innerHTML = `
+          <div class="empty-redirect">
+            <svg xmlns="http://www.w3.org/2000/svg" width="90" height="90" fill="#d0b200" opacity=".3" viewBox="0 0 16 16">
+              <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l.84 4.479 9.144-.459L13.89 4zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
+            </svg>
+            <h2>Your cart is empty!</h2>
+            <a href="mainpage.html"><button>Browse Menu</button></a>
+          </div>`;
+        return;
+      }
+
+      const subtotal = cart.reduce((s,i)=>s+i.price*i.qty, 0);
+      const delivery = subtotal > 499 ? 0 : 40;
+      const promo    = (() => { try { return JSON.parse(localStorage.getItem('fm_promo')); } catch(e) { return null; } })();
+      const discount = promo ? Math.round(subtotal * promo.discount / 100) : 0;
+      const total    = subtotal - discount + delivery;
+
+      let itemsHTML = '';
+      cart.forEach(item => {
+        itemsHTML += `
+          <div class="order-item">
+            <img class="order-item-img"
+                 src="${escHtml(item.img || 'https://assets.ccbp.in/frontend/responsive-website/food-serve.png')}"
+                 alt="${escHtml(item.name)}"
+                 onerror="this.src='https://assets.ccbp.in/frontend/responsive-website/food-serve.png'" />
+            <div>
+              <div class="order-item-name">${escHtml(item.name)}</div>
+              <div class="order-item-meta">₹${item.price} × ${item.qty}</div>
+            </div>
+            <div class="order-item-price">₹${item.price * item.qty}</div>
+          </div>`;
+      });
+
+      container.innerHTML = `
+        <div class="order-grid">
+
+          <!-- LEFT: FORM -->
+          <div>
+            <!-- Delivery Details -->
+            <div class="form-card mb-4">
+              <div class="form-section-title">
+                <span class="icon-circle">1</span> Delivery Details
+              </div>
+              <div class="input-group-row">
+                <div class="field-block">
+                  <label class="fm-label" for="fname">First Name *</label>
+                  <input type="text" id="fname" class="fm-input" placeholder="Rahul" />
+                  <div class="error-msg" id="err-fname"></div>
+                </div>
+                <div class="field-block">
+                  <label class="fm-label" for="lname">Last Name *</label>
+                  <input type="text" id="lname" class="fm-input" placeholder="Kumar" />
+                  <div class="error-msg" id="err-lname"></div>
+                </div>
+              </div>
+              <div class="input-group-row">
+                <div class="field-block">
+                  <label class="fm-label" for="phone">Phone *</label>
+                  <input type="tel" id="phone" class="fm-input" placeholder="+91 98765 43210" />
+                  <div class="error-msg" id="err-phone"></div>
+                </div>
+                <div class="field-block">
+                  <label class="fm-label" for="email">Email</label>
+                  <input type="email" id="email" class="fm-input" placeholder="you@email.com" />
+                </div>
+              </div>
+              <div class="field-block">
+                <label class="fm-label" for="address">Delivery Address *</label>
+                <textarea id="address" class="fm-input" rows="3" placeholder="House / Flat no, Street, Area…"></textarea>
+                <div class="error-msg" id="err-address"></div>
+              </div>
+              <div class="input-group-row">
+                <div class="field-block">
+                  <label class="fm-label" for="city">City *</label>
+                  <input type="text" id="city" class="fm-input" placeholder="Hyderabad" />
+                  <div class="error-msg" id="err-city"></div>
+                </div>
+                <div class="field-block">
+                  <label class="fm-label" for="pincode">Pincode *</label>
+                  <input type="text" id="pincode" class="fm-input" placeholder="500001" maxlength="6" />
+                  <div class="error-msg" id="err-pincode"></div>
+                </div>
+              </div>
+              <div class="field-block">
+                <label class="fm-label" for="notes">Special Instructions (optional)</label>
+                <textarea id="notes" class="fm-input" rows="2" placeholder="Ring the bell, leave at door, extra napkins…"></textarea>
+              </div>
+            </div>
+
+            <!-- Payment -->
+            <div class="form-card">
+              <div class="form-section-title">
+                <span class="icon-circle">2</span> Payment Method
+              </div>
+              <div class="payment-options">
+                <div class="payment-option selected" onclick="selectPayment(this,'cod')">
+                  <input type="radio" name="payment" id="pay-cod" value="cod" checked />
+                  <div>
+                    <label for="pay-cod">Cash on Delivery</label>
+                    <div class="pm-sub">Pay when food arrives at your door</div>
+                  </div>
+                </div>
+                <div class="payment-option" onclick="selectPayment(this,'upi')">
+                  <input type="radio" name="payment" id="pay-upi" value="upi" />
+                  <div>
+                    <label for="pay-upi">UPI / GPay / PhonePe</label>
+                    <div class="pm-sub">Pay instantly via any UPI app</div>
+                  </div>
+                </div>
+                <div class="payment-option" onclick="selectPayment(this,'card')">
+                  <input type="radio" name="payment" id="pay-card" value="card" />
+                  <div>
+                    <label for="pay-card">Credit / Debit Card</label>
+                    <div class="pm-sub">Visa, Mastercard, Amex, RuPay</div>
+                  </div>
+                </div>
+                <div class="payment-option" onclick="selectPayment(this,'wallet')">
+                  <input type="radio" name="payment" id="pay-wallet" value="wallet" />
+                  <div>
+                    <label for="pay-wallet">Paytm / Amazon Pay Wallet</label>
+                    <div class="pm-sub">Use your digital wallet balance</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- RIGHT: SUMMARY -->
+          <div class="summary-sidebar">
+            <div class="summary-card">
+              <div class="summary-title">Order Summary</div>
+              ${itemsHTML}
+              <hr class="divider" />
+              <div class="sum-row"><span>Subtotal</span><span>₹${subtotal}</span></div>
+              ${discount > 0 ? `<div class="sum-row" style="color:#0b6623;"><span>Promo (${promo.code})</span><span>−₹${discount}</span></div>` : ''}
+              <div class="sum-row"><span>Delivery</span><span>${delivery === 0 ? '<span style="color:#0b6623;font-weight:600;">FREE</span>' : '₹'+delivery}</span></div>
+              <hr class="divider" />
+              <div class="sum-row grand"><span>Total</span><span>₹${total}</span></div>
+              <button class="place-order-btn" id="place-order-btn" onclick="placeOrder()">
+                🍽️ &nbsp;Place Order · ₹${total}
+              </button>
+              <div style="font-size:12px;color:#7b8794;text-align:center;margin-top:12px;">
+                Estimated delivery: <strong>30–45 minutes</strong>
+              </div>
+            </div>
+          </div>
+
+        </div>`;
+    }
+
+    function selectPayment(el, value) {
+      document.querySelectorAll('.payment-option').forEach(o => o.classList.remove('selected'));
+      el.classList.add('selected');
+      el.querySelector('input[type=radio]').checked = true;
+    }
+
+    function validateForm() {
+      let ok = true;
+      const rules = [
+        { id:'fname',   err:'err-fname',   msg:'First name is required', fn: v => v.trim().length > 0 },
+        { id:'lname',   err:'err-lname',   msg:'Last name is required',  fn: v => v.trim().length > 0 },
+        { id:'phone',   err:'err-phone',   msg:'Valid phone number required', fn: v => /^\+?[\d\s\-]{8,15}$/.test(v.trim()) },
+        { id:'address', err:'err-address', msg:'Address is required',    fn: v => v.trim().length > 5 },
+        { id:'city',    err:'err-city',    msg:'City is required',        fn: v => v.trim().length > 0 },
+        { id:'pincode', err:'err-pincode', msg:'Valid 6-digit pincode required', fn: v => /^\d{6}$/.test(v.trim()) },
+      ];
+      rules.forEach(r => {
+        const input = document.getElementById(r.id);
+        const errEl = document.getElementById(r.err);
+        if (!input || !errEl) return;
+        if (!r.fn(input.value)) {
+          input.classList.add('error');
+          errEl.textContent = r.msg;
+          ok = false;
+        } else {
+          input.classList.remove('error');
+          errEl.textContent = '';
+        }
+      });
+      return ok;
+    }
+
+    function placeOrder() {
+      if (!validateForm()) {
+        document.querySelector('.fm-input.error')?.scrollIntoView({ behavior:'smooth', block:'center' });
+        return;
+      }
+      const btn = document.getElementById('place-order-btn');
+      btn.disabled = true;
+      btn.textContent = '⏳  Processing…';
+
+      setTimeout(() => {
+        const orderId = 'FM' + Date.now().toString().slice(-8).toUpperCase();
+        document.getElementById('order-id-display').textContent = 'Order ID: ' + orderId;
+        localStorage.removeItem(CART_KEY);
+        localStorage.removeItem('fm_promo');
+        document.getElementById('success-overlay').classList.add('show');
+      }, 1600);
+    }
+
+    init();
+  </script>
+</body>
+</html>
