@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <style>
+        .food-munch-logo {
+            width: 80px;
+            height: 70px;
+        }
+
+        .imgn {
+            height: 180px;
+            border-radius: 10px;
+        }
+
+        .search-logo {
+            height: 40px;
+            width: 40px;
+        }
+
+        hr {
+            color: black;
+            margin-bottom: 100px;
+        }
+
+        .cart:hover {
+            color: #d0b200;
+            cursor: pointer;
+        }
+
+        /*
+#fff085
+#fcb454
+#ff9b17
+#f16767*/
+        .ff {
+            background-color: #fdfaf6;
+        }
+
+        .fm1 {
+            font-family: 'Segoe UI', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-top: 38px;
+        }
+
+
+        .container-ui {
+            display: flex;
+            gap: 10px;
+        }
+
+        .location-input,
+        .search-bar {
+            background-color: white;
+            border-radius: 12px;
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .location-input input,
+        .search-bar input {
+            border: none;
+            outline: none;
+            font-size: 14px;
+            color: #666;
+            width: 100%;
+            background: none;
+        }
+
+        .location-input {
+            width: 300px;
+            justify-content: space-between;
+        }
+
+        .search-bar {
+            width: 500px;
+            justify-content: space-between;
+        }
+
+        .icon,
+        .dropdown-icon,
+        .search-icon {
+            font-size: 18px;
+            color: #444;
+            flex-shrink: 0;
+        }
+
+        .card2 {
+            border-radius: 16px;
+        }
+
+
+        .headi {
+            font-family: "Roboto";
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .hnv {
+            font-family: "Roboto";
+            font-size: 32px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .star {
+            background-color: #0b6623;
+            border-radius: 5px;
+            font-size: 16px;
+            color: white;
+            padding: 1px;
+            font-family: "Roboto";
+            font-weight: 600;
+        }
+
+        .np {
+            font-family: "Roboto";
+            font-size: 20px;
+            font-weight: 400;
+            margin-bottom: 10px;
+        }
+
+        .nsp {
+            font-family: "Roboto";
+            font-size: 17px;
+            font-weight: 200;
+            color: #5a7184;
+        }
+
+        .nb {
+            color: white;
+            background-color: #d0b200;
+            font-family: "Roboto";
+            border-width: 0px;
+            border-radius: 8px;
+        }
+
+        .bb {
+            color: white;
+            background-color: #d0b200;
+            font-family: "Roboto";
+            border-width: 0px;
+            border-radius: 8px;
+	    margin-left:220px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <nav class="navbar navbar-expand-lg navbar-light bg-white">
+            <div class="container"> <a class="navbar-brand" href="#"> <img src="https://d1tgh8fmlzexmh.cloudfront.net/ccbp-responsive-website/food-munch-img.png" class="food-munch-logo" /> </a>
+                <div class="d-flex flex-row">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-cart3 pt-2 pl-1 pr-1 mb-2 cart" viewBox="0 0 16 16">
+                        <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l.84 4.479 9.144-.459L13.89 4zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
+                    </svg>
+                </div>
+            </div>
+        </nav>
+        <div class="ff pb-4">
+            <div class="fm1">
+                <div class="container-ui">
+                    <div class="location-input">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt-fill icon" viewBox="0 0 16 16">
+                            <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6" />
+                        </svg>
+                        <input type="text" placeholder="Enter your delivery location">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill dropdown-icon" viewBox="0 0 16 16">
+                            <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+                        </svg>
+                    </div>
+                    <div class="search-bar">
+                        <input type="text" placeholder="Search for restaurant, item or more">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search search-icon" viewBox="0 0 16 16">
+                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <h1 class="hnv ml-5 text-center">Noodles</h1>
+            <p class="np ml-5 text-center">Satisfy your cravings with these fresh and flavoursome Noodles.</p>
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="card2 p-3 shadow mb-3 m-3"> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOgvRSQ2AZ-vxnuT1SSkeJAk1cInBh83Dpug&s" class="imgn w-100" />
+                            <div class="d-flex flex-row justify-content-between mt-2">
+                                <h1 class="headi">Chi-Noodles</h1>
+                                <p class="star pl-1 pr-1">4.9<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                    </svg></p>
+                            </div>
+                            <p class="nsp "><svg xmlns="http://www.w3.org/2000/svg" width="15px" height="15px" fill="currentColor" class="bi bi-currency-rupee mb-1" viewBox="0 0 16 16">
+                                    <path d="M4 3.06h2.726c1.22 0 2.12.575 2.325 1.724H4v1.051h5.051C8.855 7.001 8 7.558 6.788 7.558H4v1.317L8.437 14h2.11L6.095 8.884h.855c2.316-.018 3.465-1.476 3.688-3.049H12V4.784h-1.345c-.08-.778-.357-1.335-.793-1.732H12V2H4z" />
+                                </svg>140 for each</p>
+                            <button class="nb pl-3 pr-3 p-1">Order</button>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="card2 p-3 shadow mb-3 m-3"> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSw_4tspm6IY98sZwjlSG8RjlAfdha_UDLQdA&s" class="imgn w-100" />
+                            <div class="d-flex flex-row justify-content-between mt-2">
+                                <h1 class="headi">Veg-Noodles</h1>
+                                <p class="star pl-1 pr-1">4.6<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                    </svg></p>
+                            </div>
+                            <p class="nsp "><svg xmlns="http://www.w3.org/2000/svg" width="15px" height="15px" fill="currentColor" class="bi bi-currency-rupee mb-1" viewBox="0 0 16 16">
+                                    <path d="M4 3.06h2.726c1.22 0 2.12.575 2.325 1.724H4v1.051h5.051C8.855 7.001 8 7.558 6.788 7.558H4v1.317L8.437 14h2.11L6.095 8.884h.855c2.316-.018 3.465-1.476 3.688-3.049H12V4.784h-1.345c-.08-.778-.357-1.335-.793-1.732H12V2H4z" />
+                                </svg>130 for each</p>
+                            <button class="nb pl-3 pr-3 p-1">Order</button>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="card2 p-3 shadow mb-3 m-3"> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFbCqi5ExR9l6mfVFu-GeEcfJf9Y9e0YX9gA&s" class="imgn w-100" />
+                            <div class="d-flex flex-row justify-content-between mt-2">
+                                <h1 class="headi">Chow mein</h1>
+                                <p class="star pl-1 pr-1">4.9<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                    </svg></p>
+                            </div>
+                            <p class="nsp "><svg xmlns="http://www.w3.org/2000/svg" width="15px" height="15px" fill="currentColor" class="bi bi-currency-rupee mb-1" viewBox="0 0 16 16">
+                                    <path d="M4 3.06h2.726c1.22 0 2.12.575 2.325 1.724H4v1.051h5.051C8.855 7.001 8 7.558 6.788 7.558H4v1.317L8.437 14h2.11L6.095 8.884h.855c2.316-.018 3.465-1.476 3.688-3.049H12V4.784h-1.345c-.08-.778-.357-1.335-.793-1.732H12V2H4z" />
+                                </svg>150 for each</p>
+                            <button class="nb pl-3 pr-3 p-1">Order</button>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="card2 p-3 shadow mb-3 m-3"> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDKCarlgv5sEQPT5N4AmFsirVdPqL7iDYIng&s" class="imgn w-100" />
+                            <div class="d-flex flex-row justify-content-between mt-2">
+                                <h1 class="headi">Hakka Noodles</h1>
+                                <p class="star pl-1 pr-1">4.5<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                    </svg></p>
+                            </div>
+                            <p class="nsp "><svg xmlns="http://www.w3.org/2000/svg" width="15px" height="15px" fill="currentColor" class="bi bi-currency-rupee mb-1" viewBox="0 0 16 16">
+                                    <path d="M4 3.06h2.726c1.22 0 2.12.575 2.325 1.724H4v1.051h5.051C8.855 7.001 8 7.558 6.788 7.558H4v1.317L8.437 14h2.11L6.095 8.884h.855c2.316-.018 3.465-1.476 3.688-3.049H12V4.784h-1.345c-.08-.778-.357-1.335-.793-1.732H12V2H4z" />
+                                </svg>150 for each</p>
+                            <button class="nb pl-3 pr-3 p-1">Order</button>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="card2 p-3 shadow mb-3 m-3"> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhSlX-d3Xc0ptJdl1V6AEoetO6jWsOUu_H1A&s" class="imgn w-100" />
+                            <div class="d-flex flex-row justify-content-between mt-2">
+                                <h1 class="headi">Egg Noodles</h1>
+                                <p class="star pl-1 pr-1">4.8<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                    </svg></p>
+                            </div>
+                            <p class="nsp "><svg xmlns="http://www.w3.org/2000/svg" width="15px" height="15px" fill="currentColor" class="bi bi-currency-rupee mb-1" viewBox="0 0 16 16">
+                                    <path d="M4 3.06h2.726c1.22 0 2.12.575 2.325 1.724H4v1.051h5.051C8.855 7.001 8 7.558 6.788 7.558H4v1.317L8.437 14h2.11L6.095 8.884h.855c2.316-.018 3.465-1.476 3.688-3.049H12V4.784h-1.345c-.08-.778-.357-1.335-.793-1.732H12V2H4z" />
+                                </svg>130 for each</p>
+                            <button class="nb pl-3 pr-3 p-1">Order</button>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="card2 p-3 shadow mb-3 m-3"> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjBz4dMLLXCadV3RU08oQsUNC3GZdYn2qdbA&s" class="imgn w-100" />
+                            <div class="d-flex flex-row justify-content-between mt-2">
+                                <h1 class="headi">Shezwan</h1>
+                                <p class="star pl-1 pr-1">4.9<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                    </svg></p>
+                            </div>
+                            <p class="nsp "><svg xmlns="http://www.w3.org/2000/svg" width="15px" height="15px" fill="currentColor" class="bi bi-currency-rupee mb-1" viewBox="0 0 16 16">
+                                    <path d="M4 3.06h2.726c1.22 0 2.12.575 2.325 1.724H4v1.051h5.051C8.855 7.001 8 7.558 6.788 7.558H4v1.317L8.437 14h2.11L6.095 8.884h.855c2.316-.018 3.465-1.476 3.688-3.049H12V4.784h-1.345c-.08-.778-.357-1.335-.793-1.732H12V2H4z" />
+                                </svg>180 for each</p>
+                            <button class="nb pl-3 pr-3 p-1">Order</button>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="card2 p-3 shadow mb-3 m-3"> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6OxResXITN4ZM-QV7F7B-xbumZ9CUYoMt2Q&s" class="imgn w-100" />
+                            <div class="d-flex flex-row justify-content-between mt-2">
+                                <h1 class="headi">Mix Noodles</h1>
+                                <p class="star pl-1 pr-1">4.8<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                    </svg></p>
+                            </div>
+                            <p class="nsp "><svg xmlns="http://www.w3.org/2000/svg" width="15px" height="15px" fill="currentColor" class="bi bi-currency-rupee mb-1" viewBox="0 0 16 16">
+                                    <path d="M4 3.06h2.726c1.22 0 2.12.575 2.325 1.724H4v1.051h5.051C8.855 7.001 8 7.558 6.788 7.558H4v1.317L8.437 14h2.11L6.095 8.884h.855c2.316-.018 3.465-1.476 3.688-3.049H12V4.784h-1.345c-.08-.778-.357-1.335-.793-1.732H12V2H4z" />
+                                </svg>180 for each</p>
+                            <button class="nb pl-3 pr-3 p-1">Order</button>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="card2 p-3 shadow mb-3 m-3">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6mJeH96uAGGKy-VhjbYiZzhS4TA290Nt-rQ&s" class="imgn w-100" />
+                            <div class="d-flex flex-row justify-content-between mt-2">
+                                <h1 class="headi">Garlic Noodles</h1>
+                                <p class="star pl-1 pr-1">4.9<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                    </svg></p>
+                            </div>
+                            <p class="nsp "><svg xmlns="http://www.w3.org/2000/svg" width="15px" height="15px" fill="currentColor" class="bi bi-currency-rupee mb-1" viewBox="0 0 16 16">
+                                    <path d="M4 3.06h2.726c1.22 0 2.12.575 2.325 1.724H4v1.051h5.051C8.855 7.001 8 7.558 6.788 7.558H4v1.317L8.437 14h2.11L6.095 8.884h.855c2.316-.018 3.465-1.476 3.688-3.049H12V4.784h-1.345c-.08-.778-.357-1.335-.793-1.732H12V2H4z" />
+                                </svg>200 for each</p>
+                            <button class="nb pl-3 pr-3 p-1">Order</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+	    <a href="mainpage.html">
+            	<button class="bb pl-3 pr-3 p-1 mt-2 mb-2">back</button>
+	    </a>
+        </div>
+    </div>
+    <script type="text/javascript" src="https://d1tgh8fmlzexmh.cloudfront.net/ccbp-static-website/js/ccbp-ui-kit.js"></script>
+</body>
+
+</html>

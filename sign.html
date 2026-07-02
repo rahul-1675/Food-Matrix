@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <style>
+        .bgs {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            box-sizing: border-box;
+            background-color: #fdfdfd;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .signin-container {
+            width: 100%;
+            max-width: 360px;
+            background: #ffffff;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .signin-container h2 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: #333;
+        }
+
+        .mob {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+            color: #555;
+        }
+
+        .tele,
+        .otp {
+            width: 100%;
+            padding: 0.75rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .sin {
+            width: 100%;
+            padding: 0.75rem;
+            background-color: #d0b200;
+            color: white;
+            font-size: 1rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .sin:hover {
+            background-color: #e64a19;
+        }
+
+        .note {
+            margin-top: 1rem;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+        .mar {
+            font-family: Caveat;
+            font-weight: bold;
+            font-size: 50px;
+        }
+
+        .food {
+            height: 100px;
+            width: 90px;
+        }
+   </style>
+</head>
+
+<body>
+    <div class="bgs d-flex flex-column">
+        <marquee class="mb-5">
+            <h1 class="mar">
+                <img src="https://d1tgh8fmlzexmh.cloudfront.net/ccbp-responsive-website/food-munch-img.png"
+                    class="food mr-2" />Food <span style="color:#d0b200">Munch</span>
+            </h1>
+        </marquee>
+
+        <div class="signin-container">
+            <!-- Phone Section -->
+            <div id="phone-section">
+                <form id="phone-form">
+                    <h2>Sign In</h2>
+                    <label for="phone" class="mob">Mobile Number</label>
+                    <input type="tel" id="phone" name="phone" class="tele" placeholder="e.g. 9876543210" required
+                        pattern="[0-9]{10}" />
+                    <button type="submit" class="sin">Send OTP</button>
+                </form>
+                <div class="note">
+                    We'll send an OTP to verify your number.
+                </div>
+            </div>
+
+            <!-- OTP Section -->
+            <div id="otp-section" style="display: none;">
+                <h2>Enter OTP</h2>
+                <form id="otp-form">
+                    <label for="otp" class="mob">OTP</label>
+                    <input type="text" id="otp" name="otp" class="otp" placeholder="Enter OTP" required />
+                    <button type="submit" class="sin">Verify OTP</button>
+                </form>
+                <button type="button" id="back-btn" class="sin mt-2" style="background-color:#888;">Back</button>
+                <div class="note">
+                    Check your SMS for the OTP.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let sentOtp = null;
+
+        // Clear everything on page load
+        window.onload = function () {
+            sentOtp = null;
+            document.getElementById('otp-section').style.display = 'none';
+            document.getElementById('phone-section').style.display = 'block';
+            document.getElementById('otp-form').reset();
+            document.getElementById('phone-form').reset();
+        };
+
+        // Send OTP
+        document.getElementById('phone-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const phoneNumber = document.getElementById('phone').value;
+            sentOtp = Math.floor(100000 + Math.random() * 900000); // Generate 6-digit OTP
+            alert(`An OTP has been sent to ${phoneNumber}: ${sentOtp}`);
+            document.getElementById('otp-section').style.display = 'block';
+            document.getElementById('phone-section').style.display = 'none';
+            document.getElementById('phone-form').reset();
+        });
+
+        // Verify OTP
+        document.getElementById('otp-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const enteredOtp = document.getElementById('otp').value;
+
+            if (enteredOtp == sentOtp) {
+                alert("OTP verified successfully!");
+                window.location.href = 'mainpage.html'; // Redirect on success
+            } else {
+                alert("Invalid OTP. Please try again.");
+            }
+        });
+
+        // Go back to phone input
+        document.getElementById('back-btn').addEventListener('click', function () {
+            sentOtp = null;
+            document.getElementById('otp-form').reset();
+            document.getElementById('otp-section').style.display = 'none';
+            document.getElementById('phone-section').style.display = 'block';
+        });
+    </script>
+</body>
+
+</html>
